@@ -3,6 +3,8 @@ package com.mss1569.clicker.domain;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+
 class UserTest {
 
     @Test
@@ -100,34 +102,34 @@ class UserTest {
     void getAuthorities() {
         User user = User.builder().build();
 
-        Assertions.assertThat(user.getAuthorities()).isEqualTo(null);
+        Assertions.assertThat(user.getAuthorities()).isEqualTo(Collections.emptyList());
     }
 
     @Test
     void isAccountNonExpired() {
         User user = User.builder().build();
 
-        Assertions.assertThat(user.isAccountNonExpired()).isEqualTo(true);
+        Assertions.assertThat(user.isAccountNonExpired()).isTrue();
     }
 
     @Test
     void isAccountNonLocked() {
         User user = User.builder().build();
 
-        Assertions.assertThat(user.isAccountNonLocked()).isEqualTo(true);
+        Assertions.assertThat(user.isAccountNonLocked()).isTrue();
     }
 
     @Test
     void isCredentialsNonExpired() {
         User user = User.builder().build();
 
-        Assertions.assertThat(user.isCredentialsNonExpired()).isEqualTo(true);
+        Assertions.assertThat(user.isCredentialsNonExpired()).isTrue();
     }
 
     @Test
     void isEnabled() {
         User user = User.builder().build();
 
-        Assertions.assertThat(user.isEnabled()).isEqualTo(true);
+        Assertions.assertThat(user.isEnabled()).isTrue();
     }
 }

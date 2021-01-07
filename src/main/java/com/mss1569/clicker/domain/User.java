@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
+import java.util.Collections;
 
 @Data
 @Builder
@@ -30,13 +31,12 @@ public class User implements UserDetails {
     private double points = 0;
 
     @NotNull
-    @NotEmpty
     @OneToOne
     private Ant ant;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return Collections.emptyList();
     }
 
     @Override

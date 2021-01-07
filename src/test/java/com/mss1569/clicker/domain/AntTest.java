@@ -51,7 +51,7 @@ class AntTest {
                 .level(1)
                 .build();
 
-        Assertions.assertThat(ant.getPointsPerClick()).isEqualTo(10.0);
+        Assertions.assertThat(ant.getPointsPerClick()).isEqualTo(11.0);
     }
 
     @Test
@@ -60,7 +60,7 @@ class AntTest {
                 .level(2)
                 .build();
 
-        Assertions.assertThat(ant.getPointsPerClick()).isEqualTo(20.0);
+        Assertions.assertThat(ant.getPointsPerClick()).isEqualTo(21.0);
     }
 
     @Test
