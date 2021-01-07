@@ -1,9 +1,12 @@
 package com.mss1569.clicker.domain;
 
+import com.mss1569.clicker.exception.UpgradeException;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-
+@ExtendWith(SpringExtension.class)
 class AntTest {
     @Test
     void successLv1Upgrade(){
@@ -65,7 +68,8 @@ class AntTest {
 
     @Test
     void setId(){
-        Ant ant = Ant.builder().build();
+        Ant ant = Ant.builder()
+                .build();
 
         ant.setId(1L);
 
@@ -83,7 +87,8 @@ class AntTest {
 
     @Test
     void setLevel(){
-        Ant ant = Ant.builder().build();
+        Ant ant = Ant.builder()
+                .build();
 
         ant.setLevel(10);
 

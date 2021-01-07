@@ -23,7 +23,8 @@ class UserRepositoryTest {
 
     @BeforeEach
     void setUp(){
-        ant = Ant.builder().build();
+        ant = Ant.builder()
+                .build();
         antRepository.save(ant);
     }
 
@@ -46,7 +47,6 @@ class UserRepositoryTest {
         Assertions.assertThat(userSaved.getId()).isNotNull();
         Assertions.assertThat(userSaved.getUsername()).isEqualTo(userToSave.getUsername());
         Assertions.assertThat(userSaved.getPassword()).isEqualTo(userToSave.getPassword());
-        Assertions.assertThat(userSaved.getAnt()).isEqualTo(userToSave.getAnt());
         Assertions.assertThat(userSaved.getPoints()).isEqualTo(userToSave.getPoints());
     }
 
@@ -81,5 +81,61 @@ class UserRepositoryTest {
 
         Optional<User> antOptional = userRepository.findById(userSaved.getId());
         Assertions.assertThat(antOptional).isEmpty();
+    }
+
+    @Test
+    void findByUsername(){
+        User userToSave = User.builder()
+                .username("testgge")
+                .password("tesaaaate")
+                .ant(ant)
+                .build();
+
+        User userSaved = userRepository.save(userToSave);
+        User user = userRepository.findByUsername(userSaved.getUsername());
+
+        Assertions.assertThat(user).isNotNull();
+    }
+
+    @Test
+    void findByUsernameNotFound(){
+        User userToSave = User.builder()
+                .username("testgge")
+                .password("tesaaaate")
+                .ant(ant)
+                .build();
+
+        userRepository.save(userToSave);
+        User user = userRepository.findByUsername("nenhum");
+
+        Assertions.assertThat(user).isNull();
+    }
+
+    @Test
+    void existsByUsernameFalse(){
+        User userToSave = User.builder()
+                .username("testgge")
+                .password("tesaaaate")
+                .ant(ant)
+                .build();
+
+        userRepository.save(userToSave);
+        boolean existsUser = userRepository.existsByUsername("nenhum");
+
+        Assertions.assertThat(existsUser).isFalse();
+    }
+
+    @Test
+    void existsByUsernameTrue(){
+        User userToSave = User.builder()
+                .username("testgge")
+                .password("tesaaaate")
+                .ant(ant)
+                .build();
+
+        userRepository.save(userToSave);
+        boolean existsUser = userRepository.existsByUsername(userToSave.getUsername());
+
+        Assertions.assertThat(existsUser).isTrue();
     }
 }

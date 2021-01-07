@@ -1,7 +1,10 @@
 package com.mss1569.clicker.repository;
 
 import com.mss1569.clicker.domain.Ant;
+import com.mss1569.clicker.domain.User;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -22,7 +25,7 @@ class AntRepositoryTest {
 
         Assertions.assertThat(antSaved).isNotNull();
         Assertions.assertThat(antSaved.getId()).isNotNull();
-        Assertions.assertThat(antSaved.getLevel()).isEqualTo(0);
+        Assertions.assertThat(antSaved.getLevel()).isZero();
     }
 
     @Test
@@ -30,7 +33,7 @@ class AntRepositoryTest {
         Ant antToSave = Ant.builder()
                 .build();
         Ant antSaved = antRepository.save(antToSave);
-        antSaved.upgrade();
+        antSaved.setLevel(5);
 
         Ant antUpdated = antRepository.save(antSaved);
 
