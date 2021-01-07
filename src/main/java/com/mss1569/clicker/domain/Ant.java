@@ -1,11 +1,13 @@
 package com.mss1569.clicker.domain;
 
+import com.mss1569.clicker.exception.UpgradeException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
@@ -20,7 +22,7 @@ public class Ant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int level = 1;
+    private int level = 0;
 
     public void upgrade(){
         level++;
@@ -31,6 +33,6 @@ public class Ant {
     }
 
     public double getPointsPerClick(){
-        return level * POINTS_PER_LEVEL_MULTIPLIER;
+        return (level * POINTS_PER_LEVEL_MULTIPLIER) + 1;
     }
 }

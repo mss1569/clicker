@@ -1,11 +1,11 @@
-package com.mss1569.clicker.domain.exception;
+package com.mss1569.clicker.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
-public class UpgradeException extends RuntimeException{
-    public UpgradeException(String message) {
+public class ObjectNotFoundException extends RuntimeException{
+    public ObjectNotFoundException(String message) {
         super(message);
     }
 }

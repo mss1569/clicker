@@ -2,12 +2,20 @@ package com.mss1569.clicker.domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.util.Collections;
+
+@ExtendWith(SpringExtension.class)
 class UserTest {
 
     @Test
     void setId(){
-        User user = User.builder().build();
+        Ant ant = Ant.builder().build();
+        User user = User.builder()
+                .ant(ant)
+                .build();
 
         user.setId(1L);
 
@@ -25,7 +33,10 @@ class UserTest {
 
     @Test
     void setPoints(){
-        User user = User.builder().build();
+        Ant ant = Ant.builder().build();
+        User user = User.builder()
+                .ant(ant)
+                .build();
 
         user.setPoints(10);
 
@@ -43,7 +54,10 @@ class UserTest {
 
     @Test
     void setUsername(){
-        User user = User.builder().build();
+        Ant ant = Ant.builder().build();
+        User user = User.builder()
+                .ant(ant)
+                .build();
 
         user.setUsername("user");
 
@@ -61,7 +75,10 @@ class UserTest {
 
     @Test
     void setPassword(){
-        User user = User.builder().build();
+        Ant ant = Ant.builder().build();
+        User user = User.builder()
+                .ant(ant)
+                .build();
 
         user.setPassword("password");
 
@@ -74,6 +91,56 @@ class UserTest {
                 .build();
 
         Assertions.assertThat(user.getPassword()).isEqualTo("senha");
+    }
+
+    @Test
+    void getAuthorities() {
+        Ant ant = Ant.builder().build();
+        User user = User.builder()
+                .ant(ant)
+                .build();
+
+        Assertions.assertThat(user.getAuthorities()).isEqualTo(Collections.emptyList());
+    }
+
+    @Test
+    void isAccountNonExpired() {
+        Ant ant = Ant.builder().build();
+        User user = User.builder()
+                .ant(ant)
+                .build();
+
+        Assertions.assertThat(user.isAccountNonExpired()).isTrue();
+    }
+
+    @Test
+    void isAccountNonLocked() {
+        Ant ant = Ant.builder().build();
+        User user = User.builder()
+                .ant(ant)
+                .build();
+
+        Assertions.assertThat(user.isAccountNonLocked()).isTrue();
+    }
+
+    @Test
+    void isCredentialsNonExpired() {
+        Ant ant = Ant.builder().build();
+        User user = User.builder()
+                .ant(ant)
+                .build();
+
+        Assertions.assertThat(user.isCredentialsNonExpired()).isTrue();
+    }
+
+    @Test
+    void isEnabled() {
+        Ant ant = Ant.builder().build();
+        User user = User.builder()
+                .ant(ant)
+                .build();
+
+        Assertions.assertThat(user.isEnabled()).isTrue();
     }
 
     @Test
@@ -94,40 +161,5 @@ class UserTest {
                 .build();
 
         Assertions.assertThat(user.getAnt()).isEqualTo(ant);
-    }
-
-    @Test
-    void getAuthorities() {
-        User user = User.builder().build();
-
-        Assertions.assertThat(user.getAuthorities()).isEqualTo(null);
-    }
-
-    @Test
-    void isAccountNonExpired() {
-        User user = User.builder().build();
-
-        Assertions.assertThat(user.isAccountNonExpired()).isEqualTo(true);
-    }
-
-    @Test
-    void isAccountNonLocked() {
-        User user = User.builder().build();
-
-        Assertions.assertThat(user.isAccountNonLocked()).isEqualTo(true);
-    }
-
-    @Test
-    void isCredentialsNonExpired() {
-        User user = User.builder().build();
-
-        Assertions.assertThat(user.isCredentialsNonExpired()).isEqualTo(true);
-    }
-
-    @Test
-    void isEnabled() {
-        User user = User.builder().build();
-
-        Assertions.assertThat(user.isEnabled()).isEqualTo(true);
     }
 }
