@@ -14,6 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserService userService;
 
+    private static final String[] PUBLIC_MATCHERS = {
+            "/clicker/register",
+    };
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
@@ -31,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers(PUBLIC_MATCHERS).permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
