@@ -23,16 +23,41 @@ public class Ant {
     private Long id;
 
     private int level = 0;
+    private double points = 0;
 
-    public void upgrade(){
+    @NotNull
+    @OneToOne
+    private User user;
+
+    public void click() {
+        points += getPointsPerClick();
+    }
+
+    public double getPointsPerClick() {
+        return (level * POINTS_PER_LEVEL_MULTIPLIER) + 1;
+    }
+
+    public void upgrade() {
+        if (!canUpgrade())
+            throw new UpgradeException("Upgrade error");
+
+        subtractPoints(getUpgradePrice());
+        incrementLevel();
+    }
+
+    public void subtractPoints(double pointsToSubtract){
+        points -= pointsToSubtract;
+    }
+
+    public void incrementLevel(){
         level++;
     }
 
-    public double getUpgradePrice(){
-        return Math.pow(PRICE_PER_LEVEL_MULTIPLIER, level);
+    public boolean canUpgrade() {
+        return points >= getUpgradePrice();
     }
 
-    public double getPointsPerClick(){
-        return (level * POINTS_PER_LEVEL_MULTIPLIER) + 1;
+    public double getUpgradePrice() {
+        return Math.pow(PRICE_PER_LEVEL_MULTIPLIER, level);
     }
 }

@@ -18,6 +18,16 @@ public class AntService {
                 .orElseThrow(() -> new ObjectNotFoundException("Ant not found"));
     }
 
+    public void click(Ant ant){
+        ant.click();
+        antRepository.save(ant);
+    }
+
+    public void upgrade(Ant ant){
+        ant.upgrade();
+        antRepository.save(ant);
+    }
+
     @Transactional
     public Ant save(Ant ant) {
         return antRepository.save(ant);

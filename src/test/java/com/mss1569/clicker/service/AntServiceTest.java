@@ -6,10 +6,7 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
-import org.mockito.BDDMockito;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
@@ -49,5 +46,24 @@ class AntServiceTest {
     void delete() {
         Assertions.assertThatCode(() -> antService.delete(1L))
                 .doesNotThrowAnyException();
+    }
+
+    @Test
+    void click(){
+        antService.click(ant);
+
+        Assertions.assertThat(ant.getPoints()).isEqualTo(1);
+        Mockito.verify(antRepositoryMock, Mockito.times(1)).save(ant);
+    }
+
+    @Test
+    void upgrade(){
+        ant.setPoints(2);
+
+        antService.upgrade(ant);
+
+        Assertions.assertThat(ant.getPoints()).isEqualTo(1);
+        Assertions.assertThat(ant.getLevel()).isEqualTo(1);
+        Mockito.verify(antRepositoryMock, Mockito.times(1)).save(ant);
     }
 }

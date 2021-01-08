@@ -16,29 +16,11 @@ class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private AntRepository antRepository;
-
-    private Ant ant;
-
-    @BeforeEach
-    void setUp(){
-        ant = Ant.builder()
-                .build();
-        antRepository.save(ant);
-    }
-
-    @AfterEach
-    void cleanUp(){
-        antRepository.delete(ant);
-    }
-
     @Test
     void save(){
         User userToSave = User.builder()
                 .username("testgge")
                 .password("tesaaaate")
-                .ant(ant)
                 .build();
 
         User userSaved = userRepository.save(userToSave);
@@ -47,7 +29,6 @@ class UserRepositoryTest {
         Assertions.assertThat(userSaved.getId()).isNotNull();
         Assertions.assertThat(userSaved.getUsername()).isEqualTo(userToSave.getUsername());
         Assertions.assertThat(userSaved.getPassword()).isEqualTo(userToSave.getPassword());
-        Assertions.assertThat(userSaved.getPoints()).isEqualTo(userToSave.getPoints());
     }
 
     @Test
@@ -55,17 +36,16 @@ class UserRepositoryTest {
         User userToSave = User.builder()
                 .username("teste")
                 .password("testesss")
-                .ant(ant)
                 .build();
         User userSaved = userRepository.save(userToSave);
 
-        userSaved.setPoints(50);
+        userSaved.setUsername("teste2");
 
         User userUpdated = userRepository.save(userSaved);
 
         Assertions.assertThat(userUpdated).isNotNull();
         Assertions.assertThat(userUpdated.getId()).isEqualTo(userSaved.getId());
-        Assertions.assertThat(userUpdated.getPoints()).isEqualTo(userSaved.getPoints());
+        Assertions.assertThat(userUpdated.getUsername()).isEqualTo(userSaved.getUsername());
     }
 
     @Test
@@ -73,7 +53,6 @@ class UserRepositoryTest {
         User userToSave = User.builder()
                 .username("testeaaa")
                 .password("teste")
-                .ant(ant)
                 .build();
         User userSaved = userRepository.save(userToSave);
 
@@ -88,7 +67,6 @@ class UserRepositoryTest {
         User userToSave = User.builder()
                 .username("testgge")
                 .password("tesaaaate")
-                .ant(ant)
                 .build();
 
         User userSaved = userRepository.save(userToSave);
@@ -102,7 +80,6 @@ class UserRepositoryTest {
         User userToSave = User.builder()
                 .username("testgge")
                 .password("tesaaaate")
-                .ant(ant)
                 .build();
 
         userRepository.save(userToSave);
@@ -116,7 +93,6 @@ class UserRepositoryTest {
         User userToSave = User.builder()
                 .username("testgge")
                 .password("tesaaaate")
-                .ant(ant)
                 .build();
 
         userRepository.save(userToSave);
@@ -130,7 +106,6 @@ class UserRepositoryTest {
         User userToSave = User.builder()
                 .username("testgge")
                 .password("tesaaaate")
-                .ant(ant)
                 .build();
 
         userRepository.save(userToSave);

@@ -28,12 +28,6 @@ public class User implements UserDetails {
     @NotEmpty
     private String password;
 
-    private double points = 0;
-
-    @NotNull
-    @OneToOne
-    private Ant ant;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.emptyList();

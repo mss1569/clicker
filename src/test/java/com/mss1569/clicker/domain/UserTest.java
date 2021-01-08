@@ -12,9 +12,7 @@ class UserTest {
 
     @Test
     void setId(){
-        Ant ant = Ant.builder().build();
         User user = User.builder()
-                .ant(ant)
                 .build();
 
         user.setId(1L);
@@ -32,31 +30,8 @@ class UserTest {
     }
 
     @Test
-    void setPoints(){
-        Ant ant = Ant.builder().build();
-        User user = User.builder()
-                .ant(ant)
-                .build();
-
-        user.setPoints(10);
-
-        Assertions.assertThat(user.getPoints()).isEqualTo(10);
-    }
-
-    @Test
-    void getPoints(){
-        User user = User.builder()
-                .points(50)
-                .build();
-
-        Assertions.assertThat(user.getPoints()).isEqualTo(50);
-    }
-
-    @Test
     void setUsername(){
-        Ant ant = Ant.builder().build();
         User user = User.builder()
-                .ant(ant)
                 .build();
 
         user.setUsername("user");
@@ -75,9 +50,7 @@ class UserTest {
 
     @Test
     void setPassword(){
-        Ant ant = Ant.builder().build();
         User user = User.builder()
-                .ant(ant)
                 .build();
 
         user.setPassword("password");
@@ -95,9 +68,7 @@ class UserTest {
 
     @Test
     void getAuthorities() {
-        Ant ant = Ant.builder().build();
         User user = User.builder()
-                .ant(ant)
                 .build();
 
         Assertions.assertThat(user.getAuthorities()).isEqualTo(Collections.emptyList());
@@ -105,9 +76,7 @@ class UserTest {
 
     @Test
     void isAccountNonExpired() {
-        Ant ant = Ant.builder().build();
         User user = User.builder()
-                .ant(ant)
                 .build();
 
         Assertions.assertThat(user.isAccountNonExpired()).isTrue();
@@ -115,9 +84,7 @@ class UserTest {
 
     @Test
     void isAccountNonLocked() {
-        Ant ant = Ant.builder().build();
         User user = User.builder()
-                .ant(ant)
                 .build();
 
         Assertions.assertThat(user.isAccountNonLocked()).isTrue();
@@ -125,9 +92,7 @@ class UserTest {
 
     @Test
     void isCredentialsNonExpired() {
-        Ant ant = Ant.builder().build();
         User user = User.builder()
-                .ant(ant)
                 .build();
 
         Assertions.assertThat(user.isCredentialsNonExpired()).isTrue();
@@ -135,31 +100,9 @@ class UserTest {
 
     @Test
     void isEnabled() {
-        Ant ant = Ant.builder().build();
         User user = User.builder()
-                .ant(ant)
                 .build();
 
         Assertions.assertThat(user.isEnabled()).isTrue();
-    }
-
-    @Test
-    void setAnt(){
-        Ant ant = Ant.builder().build();
-        User user = User.builder().build();
-
-        user.setAnt(ant);
-
-        Assertions.assertThat(user.getAnt()).isEqualTo(ant);
-    }
-
-    @Test
-    void getAnt(){
-        Ant ant = Ant.builder().build();
-        User user = User.builder()
-                .ant(ant)
-                .build();
-
-        Assertions.assertThat(user.getAnt()).isEqualTo(ant);
     }
 }
