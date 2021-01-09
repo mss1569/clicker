@@ -83,6 +83,22 @@ class UserServiceTest {
     }
 
     @Test
+    void findByUsername() {
+        User user = userService.findByUsername("matheus");
+
+        Assertions.assertThat(user).isNotNull();
+    }
+
+    @Test
+    void findByUsernameNotFound() {
+        BDDMockito.when(userRepositoryMock.findByUsername(ArgumentMatchers.anyString()))
+                .thenReturn(null);
+
+        Assertions.assertThatExceptionOfType(ObjectNotFoundException.class)
+                .isThrownBy(() -> userService.findByUsername("nenhum"));
+    }
+
+    @Test
     void save() {
         User userSaved = userService.save(user);
 

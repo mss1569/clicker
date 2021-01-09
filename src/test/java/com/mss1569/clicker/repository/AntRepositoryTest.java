@@ -16,9 +16,28 @@ class AntRepositoryTest {
     @Autowired
     private AntRepository antRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+    private User user;
+
+    @BeforeEach
+    void setUp(){
+        user = User.builder()
+                .username("teste")
+                .password("senha")
+                .build();
+        userRepository.save(user);
+    }
+
+    @AfterEach
+    void cleanUp(){
+        userRepository.delete(user);
+    }
+
     @Test
     void save(){
         Ant antToSave = Ant.builder()
+                .user(user)
                 .build();
 
         Ant antSaved = antRepository.save(antToSave);
@@ -31,6 +50,7 @@ class AntRepositoryTest {
     @Test
     void update(){
         Ant antToSave = Ant.builder()
+                .user(user)
                 .build();
         Ant antSaved = antRepository.save(antToSave);
         antSaved.setLevel(5);
@@ -45,6 +65,7 @@ class AntRepositoryTest {
     @Test
     void delete(){
         Ant antToSave = Ant.builder()
+                .user(user)
                 .build();
         Ant antSaved = antRepository.save(antToSave);
 
@@ -52,5 +73,42 @@ class AntRepositoryTest {
 
         Optional<Ant> antOptional = antRepository.findById(antSaved.getId());
         Assertions.assertThat(antOptional).isEmpty();
+    }
+
+    @Test
+    void findByUserUsername(){
+        Ant antToSave = Ant.builder()
+                .user(user)
+                .build();
+        Ant antSaved = antRepository.save(antToSave);
+
+        Ant antFound = antRepository.findByUserUsername(user.getUsername());
+
+        Assertions.assertThat(antFound).isNotNull();
+        Assertions.assertThat(antFound.getId()).isNotNull();
+        Assertions.assertThat(antFound.getId()).isEqualTo(antSaved.getId());
+        Assertions.assertThat(antFound.getUser().getUsername()).isEqualTo(user.getUsername());
+    }
+
+    @Test
+    void existsByUserIdFalse(){
+        Ant antToSave = Ant.builder()
+                .user(user)
+                .build();
+        Ant antSaved = antRepository.save(antToSave);
+        boolean existsAnt = antRepository.existsByUserId(85L);
+
+        Assertions.assertThat(existsAnt).isFalse();
+    }
+
+    @Test
+    void existsByUserIdTrue(){
+        Ant antToSave = Ant.builder()
+                .user(user)
+                .build();
+        Ant antSaved = antRepository.save(antToSave);
+        boolean existsAnt = antRepository.existsByUserId(user.getId());
+
+        Assertions.assertThat(existsAnt).isTrue();
     }
 }

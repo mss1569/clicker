@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -27,12 +26,6 @@ public class User implements UserDetails {
     private String username;
     @NotEmpty
     private String password;
-
-    private double points = 0;
-
-    @NotNull
-    @OneToOne
-    private Ant ant;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
