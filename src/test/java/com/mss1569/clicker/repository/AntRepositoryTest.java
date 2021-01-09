@@ -89,4 +89,26 @@ class AntRepositoryTest {
         Assertions.assertThat(antFound.getId()).isEqualTo(antSaved.getId());
         Assertions.assertThat(antFound.getUser().getUsername()).isEqualTo(user.getUsername());
     }
+
+    @Test
+    void existsByUserIdFalse(){
+        Ant antToSave = Ant.builder()
+                .user(user)
+                .build();
+        Ant antSaved = antRepository.save(antToSave);
+        boolean existsAnt = antRepository.existsByUserId(85L);
+
+        Assertions.assertThat(existsAnt).isFalse();
+    }
+
+    @Test
+    void existsByUserIdTrue(){
+        Ant antToSave = Ant.builder()
+                .user(user)
+                .build();
+        Ant antSaved = antRepository.save(antToSave);
+        boolean existsAnt = antRepository.existsByUserId(user.getId());
+
+        Assertions.assertThat(existsAnt).isTrue();
+    }
 }

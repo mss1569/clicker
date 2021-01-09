@@ -15,7 +15,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserService userService;
 
     private static final String[] PUBLIC_MATCHERS = {
-            "/clicker/register",
+            "/user",
     };
 
     @Override

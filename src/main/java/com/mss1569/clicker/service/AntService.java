@@ -1,12 +1,14 @@
 package com.mss1569.clicker.service;
 
 import com.mss1569.clicker.domain.Ant;
+import com.mss1569.clicker.exception.ObjectFoundException;
 import com.mss1569.clicker.exception.ObjectNotFoundException;
 import com.mss1569.clicker.repository.AntRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,18 +20,26 @@ public class AntService {
                 .orElseThrow(() -> new ObjectNotFoundException("Ant not found"));
     }
 
-    public void click(Ant ant){
-        ant.click();
-        antRepository.save(ant);
+    public Ant findByUserUsername(String username) {
+        return Optional.ofNullable(antRepository.findByUserUsername(username))
+                .orElseThrow(() -> new ObjectNotFoundException("Ant not found"));
     }
 
-    public void upgrade(Ant ant){
+    public Ant click(Ant ant){
+        ant.click();
+        return antRepository.save(ant);
+    }
+
+    public Ant upgrade(Ant ant){
         ant.upgrade();
-        antRepository.save(ant);
+        return antRepository.save(ant);
     }
 
     @Transactional
     public Ant save(Ant ant) {
+        if (antRepository.existsByUserId(ant.getUser().getId()))
+            throw new ObjectFoundException("User cannot have two ants");
+
         return antRepository.save(ant);
     }
 

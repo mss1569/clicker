@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -29,14 +31,21 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new ObjectNotFoundException("User not found"));
     }
 
+    public User findByUsername(String username) {
+        return Optional.ofNullable(userRepository.findByUsername(username))
+                .orElseThrow(() -> new ObjectNotFoundException("User not found"));
+    }
+
     @Transactional
     public User save(User user) {
+        PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+
         if (userRepository.existsByUsername(user.getUsername()))
             throw new ObjectFoundException("Username already exists");
 
-        userRepository.save(user);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        return user;
+        return userRepository.save(user);
     }
 
     public void delete(long id) {
