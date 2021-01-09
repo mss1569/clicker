@@ -2,15 +2,13 @@ package com.mss1569.clicker.controller;
 
 import com.mss1569.clicker.DTO.UserPostRequest;
 import com.mss1569.clicker.domain.User;
-import com.mss1569.clicker.mapper.UserMapper;
 import com.mss1569.clicker.service.UserService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mapstruct.factory.Mappers;
 import org.mockito.*;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.modelmapper.ModelMapper;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
@@ -20,7 +18,7 @@ class UserControllerTest {
     @Mock
     private UserService userServiceMock;
     @Spy
-    private UserMapper userMapper = Mappers.getMapper(UserMapper.class);
+    private ModelMapper modelMapper = new ModelMapper();
 
     private User user;
     private UserPostRequest userPostRequest;
