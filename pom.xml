@@ -16,19 +16,19 @@
 
 	<properties>
 		<java.version>11</java.version>
-		<org.mapstruct.version>1.4.1.Final</org.mapstruct.version>
+		<org.springdoc.version>1.5.2</org.springdoc.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-boot-starter</artifactId>
-			<version>3.0.0</version>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>${org.springdoc.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>3.0.0</version>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-security</artifactId>
+			<version>${org.springdoc.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.modelmapper</groupId>
