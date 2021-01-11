@@ -29,6 +29,8 @@ jobs:
         run: mvn -B package --file pom.xml
 
   docker-push:
+    needs: [build]
+    
     runs-on: ubuntu-latest
     steps:
       -
@@ -54,8 +56,7 @@ jobs:
           file: ./dockerfile
           platforms: linux/amd64,linux/arm64,linux/386
           push: true
-          repository: mss1569/clicker
-          tag_with_ref: true
+          tags: mss1569/clicker:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
