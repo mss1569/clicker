@@ -52,11 +52,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
+          push: true
+          tags: mss1569/clicker
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64,linux/arm64,linux/386
-          push: true
-          tags: mss1569/clicker:latest
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
