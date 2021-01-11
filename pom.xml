@@ -6,13 +6,13 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.4.1</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath/>
 	</parent>
 	<groupId>com.mss1569</groupId>
 	<artifactId>clicker</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>clicker</name>
-	<description>Demo project for Clicker Game</description>
+	<description>API RESTful para um game incremental baseado em clicks</description>
 
 	<properties>
 		<java.version>11</java.version>
