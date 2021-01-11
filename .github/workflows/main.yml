@@ -54,4 +54,8 @@ jobs:
           file: ./dockerfile
           platforms: linux/amd64,linux/arm64,linux/386
           push: true
-          tags: mss1569/clicker:latest
+          repository: mss1569/clicker
+          tag_with_ref: true
+
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
