@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mss1569</groupId>
 	<artifactId>clicker</artifactId>
-	<version>1.0.0</version>
+	<version>1.0</version>
 	<name>clicker</name>
 	<description>API RESTful para um game incremental baseado em clicks</description>
 
