@@ -3,6 +3,7 @@ package com.mss1569.clicker.controller;
 import com.mss1569.clicker.DTO.UserPostRequest;
 import com.mss1569.clicker.domain.User;
 import com.mss1569.clicker.service.UserService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ public class UserController {
     private ModelMapper modelMapper;
 
     @GetMapping(path="/me")
+    @SecurityRequirement(name = "basicAuth")
     public ResponseEntity<User> findMe(@AuthenticationPrincipal UserDetails userDetails){
         return ResponseEntity.ok(userService.findByUsername(userDetails.getUsername()));
     }

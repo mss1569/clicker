@@ -1,5 +1,6 @@
 package com.mss1569.clicker.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mss1569.clicker.exception.UpgradeException;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +26,7 @@ public class Ant {
     private int level = 0;
     private double points = 0;
 
+    @JsonIgnore
     @NotNull
     @OneToOne
     private User user;
