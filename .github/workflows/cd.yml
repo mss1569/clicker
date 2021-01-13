@@ -3,8 +3,6 @@ name: CD
 on:
   push:
     branches: [ main ]
-    paths-ignore:
-    - '!README.md'
 
 jobs:
   release:
@@ -53,3 +51,19 @@ jobs:
 
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
+  codecov:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Java JDK
+        uses: actions/setup-java@v1.4.3
+        with:
+          java-version: 14
+
+      - name: Build and test project with Maven
+        run: mvn -B package --file pom.xml
+
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
