@@ -100,4 +100,20 @@ class AntServiceTest {
         Assertions.assertThatExceptionOfType(ObjectNotFoundException.class)
                 .isThrownBy(() -> antService.findByUserUsername("nenhum"));
     }
+
+    @Test
+    void findById() {
+        Ant antFound = antService.findById(ant.getId());
+
+        Assertions.assertThat(antFound).isNotNull();
+    }
+
+    @Test
+    void findByIdNotFound() {
+        BDDMockito.when(antRepositoryMock.findById(ArgumentMatchers.anyLong()))
+                .thenReturn(Optional.empty());
+
+        Assertions.assertThatExceptionOfType(ObjectNotFoundException.class)
+                .isThrownBy(() -> antService.findById(75L));
+    }
 }
