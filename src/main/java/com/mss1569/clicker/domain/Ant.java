@@ -2,15 +2,13 @@ package com.mss1569.clicker.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mss1569.clicker.exception.UpgradeException;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-@Data
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
