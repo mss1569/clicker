@@ -1,3 +1,4 @@
+[![Build](https://github.com/mss1569/clicker/workflows/Build/badge.svg)](https://github.com/mss1569/clicker/actions)
 [![codecov](https://codecov.io/gh/mss1569/clicker/branch/main/graph/badge.svg?token=ZW1VMZ6M5L)](https://codecov.io/gh/mss1569/clicker)
 
 # API RESTful para um game incremental baseado em clicks.
