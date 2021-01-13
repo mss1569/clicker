@@ -6,6 +6,7 @@ on:
 
 jobs:
   release:
+    if: startsWith(github.ref, 'refs/tags/v')
     name: Create Release
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +24,7 @@ jobs:
           prerelease: false
 
   docker-push:
+    if: startsWith(github.ref, 'refs/tags/v')
     runs-on: ubuntu-latest
     steps:
       -
