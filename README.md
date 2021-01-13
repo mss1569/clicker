@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/mss1569/clicker/branch/main/graph/badge.svg?token=ZW1VMZ6M5L)](https://codecov.io/gh/mss1569/clicker)
+
 # API RESTful para um game incremental baseado em clicks.
 
 O game é baseado em clicar em um formiga para ganhar pontos.
